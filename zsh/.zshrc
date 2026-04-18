@@ -7,14 +7,24 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export PATH=/Users/aotselin/.local/bin:$PATH
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
+export ZSH=$HOME/.oh-my-zsh
+# Java config
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH=$PATH:/Users/aotselin/bin/
 export DISABLE_AUTO_TITLE=true
-
+# Neovim
+export EDITOR=nvim
+# go
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:/usr/local/go/bin:$GOBIN"
+# Yarn
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -84,7 +94,7 @@ export DISABLE_AUTO_TITLE=true
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions web-search)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,14 +124,21 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias python=/opt/homebrew/bin/python3.11
-alias pip=pip3
+# alias python=/opt/homebrew/bin/python3.12
+# alias pip=pip3
 alias ll='ls -al'
+alias lg=lazygit
+alias k=kubectl
+alias k8p="k get pods"
+alias ca=cursor-agent
 #alias /opt/homebrew/bin/python3
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -15,9 +15,56 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Disable the concealing in some file formats
 -- The default conceallevel is 3 in LazyVim
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "json", "jsonc", "markdown" },
+--   callback = function()
+--     vim.opt.conceallevel = 0
+--   end,
+-- })
+
+-- Language-specific indentation settings
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "json", "jsonc", "markdown" },
+  pattern = { "go" },
   callback = function()
-    vim.opt.conceallevel = 0
+    -- Go uses tabs for indentation
+    vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "java" },
+  callback = function()
+    -- 4-space indentation
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "javascriptreact",
+    "jsx",
+    "typescript",
+    "typescriptreact",
+    "tsx",
+    "yaml",
+    "yml",
+    "json",
+    "jsonc",
+    "lua",
+    "markdown",
+  },
+  callback = function()
+    -- 2-space indentation
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
   end,
 })

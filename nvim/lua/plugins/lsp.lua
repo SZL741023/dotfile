@@ -1,7 +1,7 @@
 return {
   -- tools
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "stylua",
@@ -13,6 +13,7 @@ return {
         "typescript-language-server",
         "css-lsp",
         "pyright",
+        "jdtls",
       })
     end,
   },
@@ -72,6 +73,7 @@ return {
                   reportOptionalSubscript = "none", -- 忽略索引錯誤
                   reportUnboundVariable = "none", -- 忽略未綁定變數錯誤
                   reportUnusedVariable = "none", -- 忽略未使用變數警告
+                  reportUnusedImport = "none", -- 忽略未使用引入警告
                 },
               },
             },
